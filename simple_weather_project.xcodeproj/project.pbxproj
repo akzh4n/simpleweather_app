@@ -13,6 +13,10 @@
 		73D42D8328A8507800B05019 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D42D8128A8507800B05019 /* Main.storyboard */; };
 		73D42D8528A8507C00B05019 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D42D8428A8507C00B05019 /* Assets.xcassets */; };
 		73D42D8828A8507C00B05019 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D42D8628A8507C00B05019 /* LaunchScreen.storyboard */; };
+		73D968AD28AAD65200ADA231 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D968AC28AAD65200ADA231 /* WeatherManager.swift */; };
+		73D968AF28AAD65A00ADA231 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D968AE28AAD65A00ADA231 /* WeatherData.swift */; };
+		73D968B128AAD66400ADA231 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D968B028AAD66400ADA231 /* WeatherModel.swift */; };
+		73D968B328AAD72800ADA231 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D968B228AAD72800ADA231 /* WeatherViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		73D42D8428A8507C00B05019 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73D42D8728A8507C00B05019 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73D42D8928A8507C00B05019 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73D968AC28AAD65200ADA231 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		73D968AE28AAD65A00ADA231 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		73D968B028AAD66400ADA231 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		73D968B228AAD72800ADA231 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +64,10 @@
 		73D42D7A28A8507800B05019 /* simple_weather_project */ = {
 			isa = PBXGroup;
 			children = (
+				73D968AB28AAD64100ADA231 /* WeModel */,
 				73D42D7B28A8507800B05019 /* AppDelegate.swift */,
 				73D42D7D28A8507800B05019 /* SceneDelegate.swift */,
+				73D968B228AAD72800ADA231 /* WeatherViewController.swift */,
 				73D42D7F28A8507800B05019 /* ViewController.swift */,
 				73D42D8128A8507800B05019 /* Main.storyboard */,
 				73D42D8428A8507C00B05019 /* Assets.xcassets */,
@@ -65,6 +75,16 @@
 				73D42D8928A8507C00B05019 /* Info.plist */,
 			);
 			path = simple_weather_project;
+			sourceTree = "<group>";
+		};
+		73D968AB28AAD64100ADA231 /* WeModel */ = {
+			isa = PBXGroup;
+			children = (
+				73D968AC28AAD65200ADA231 /* WeatherManager.swift */,
+				73D968AE28AAD65A00ADA231 /* WeatherData.swift */,
+				73D968B028AAD66400ADA231 /* WeatherModel.swift */,
+			);
+			path = WeModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +159,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				73D42D8028A8507800B05019 /* ViewController.swift in Sources */,
+				73D968AF28AAD65A00ADA231 /* WeatherData.swift in Sources */,
 				73D42D7C28A8507800B05019 /* AppDelegate.swift in Sources */,
+				73D968AD28AAD65200ADA231 /* WeatherManager.swift in Sources */,
+				73D968B328AAD72800ADA231 /* WeatherViewController.swift in Sources */,
+				73D968B128AAD66400ADA231 /* WeatherModel.swift in Sources */,
 				73D42D7E28A8507800B05019 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,7 +240,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +294,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -285,11 +309,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 32TDRHHMUS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = simple_weather_project/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SimpleWeather;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to get the current location's weather data.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -313,11 +340,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 32TDRHHMUS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = simple_weather_project/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SimpleWeather;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to get the current location's weather data.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
