@@ -9,183 +9,178 @@
 import UIKit
 import CoreLocation
 
+
 class WeatherViewController: UIViewController {
+    
+    
+   
+ 
+    
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var conditionImage: UIImageView!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var pressureLabel: UILabel!
+    @IBOutlet weak var maxTemperatureLabel: UILabel!
+    @IBOutlet weak var minTemperatureLabel: UILabel!
+    @IBOutlet weak var feelsLikeLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    
+    var weatherManager = WeatherManager()
+    let locationManager = CLLocationManager()
    
     
-    @IBOutlet weak var searchTF: UITextField!
-    @IBOutlet weak var conditionImage: UIImageView!
-    
-    @IBOutlet weak var cityLabel: UILabel!
-    
-    @IBOutlet weak var summaryLabel: UILabel!
-    
-    @IBOutlet weak var table: UITableView!
-    
-    var dailyModels = [DailyWeatherEntry]()
-    var hourlyModels = [HourlyWeatherEntry]()
-    
-    let locationManager = CLLocationManager()
-    var currentLocation: CLLocation?
-    var currentWeather: CurrentWeather?
+    // MARK: - View Controller Life Cycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
+        
+        searchTextField.delegate = self
+        
+        // Must set locationManager delegate before requesting location.
+        locationManager.delegate = self
+        
+        // Send location permission request.
+        locationManager.requestWhenInUseAuthorization()
+        
+        // Request intial location fix.
+        locationManager.startUpdatingLocation()
+        
+        weatherManager.delegate = self
+        
     
-        // Cells register
-        table.register(HourlyTableViewCell.nib(), forCellReuseIdentifier: "HourlyTableViewCell")
-        table.register(WeatherTableViewCell.nib(), forCellReuseIdentifier: "WeatherTableViewCell")
-        
-        table.delegate = self
-        table.dataSource = self
-        
-        table.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-        
-        table.addSubview(createSeparateLine(x: 0, y: 200, width: view.frame.size.width, height: 1.0))
-        table.addSubview(createSeparateLine(x: 0, y: 320, width: view.frame.size.width, height: 1.0))
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
     }
+    
     
     
     func searchComplete(){
-            let searchText = searchTF.text!
-            searchTF.endEditing(true)
-        }
-    
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        setupLocation()
+        let searchText = searchTextField.text!
+        searchTextField.endEditing(true)
     }
-    
-    
-    
     
 }
 
 
-
-
-
-extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
+extension WeatherViewController: UITextFieldDelegate {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+  
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchComplete()
+        return true
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if searchTextField.text != ""{
+            return true
+        }else{
+            textField.placeholder = "Please type something here"
+            return false
         }
-        return dailyModels.count
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: HourlyTableViewCell.identifier, for: indexPath) as! HourlyTableViewCell
-            cell.configure(with: hourlyModels)
-            return cell
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let city = searchTextField.text {
+            weatherManager.fetchWeather(cityName: city)
         }
-        
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: WeatherTableViewCell.identifier, for: indexPath) as! WeatherTableViewCell
-        cell.configure(with: dailyModels[indexPath.row])
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if indexPath.section == 0 {
-            return 120
-        }
-        // Hide Row with Current Data
-        if indexPath.row == 0 {
-            return 0
-        }
-        return 40
+        searchTextField.text = ""
     }
 }
+    
+   
+    
+    
+
+
+
+
+// MARK: - WeatherManagerDelegate
+
+extension WeatherViewController: WeatherManagerDelegate {
+    
+    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
+        
+        DispatchQueue.main.async {
+            
+            let icon = weather.icon
+            
+            if icon.contains("n") {
+                
+                self.conditionImage.image = UIImage.init(systemName: weather.nightConditionName)
+                
+            } else if icon.contains("d") {
+                
+                self.conditionImage.image = UIImage.init(systemName: weather.dayConditionName)
+            }
+            
+            self.descriptionLabel.text = weather.description.capitalizingFirstLetter()
+            self.cityLabel.text = weather.cityName
+            self.temperatureLabel.text = weather.currentTemperatureString
+            self.feelsLikeLabel.text = weather.feelsLikeString
+            self.pressureLabel.text = weather.pressureString
+            self.humidityLabel.text = weather.humidityString
+            self.minTemperatureLabel.text = weather.lowTemperatureString
+            self.maxTemperatureLabel.text = weather.highTemperatureString
+        }
+    }
+    
+    func didFailWithError(error: Error) {
+        print(error)
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
 
 extension WeatherViewController: CLLocationManagerDelegate {
     
-    // Location Setup
-    func setupLocation() {
-        locationManager.delegate = self
+    @IBAction func locationButtonPressed(_ sender: UIButton) {
+        
+        print("Location button pressed")
+        
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.requestLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        if !locations.isEmpty, currentLocation == nil {
-            currentLocation = locations.first
+        if let location = locations.last {
             locationManager.stopUpdatingLocation()
-            requestWeatherForLocation()
+            let lat = location.coordinate.latitude
+            let lon = location.coordinate.longitude
+            weatherManager.fetchWeather(latitude: lat, longitude: lon)
         }
     }
     
-    func requestWeatherForLocation() {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
-        guard let currentLocation = currentLocation else { return }
-        let latitude = currentLocation.coordinate.latitude
-        let longitude = currentLocation.coordinate.longitude
-        
-        let url = "https://api.darksky.net/forecast/deabd75bf7e8486ffe1df7b9929f5fb7/\(latitude),\(longitude)?exclude=[flags,minutely]"
-        
-        
-        
-        URLSession.shared.dataTask(with: URL(string: url)!) { (data, response, error) in
-            
-            DispatchQueue.main.async {
-                
-                guard let data = data, error == nil else { return }
-                
-                var json: WeatherResponse?
-                
-                do {
-                    json = try JSONDecoder().decode(WeatherResponse.self, from: data)
-                } catch {
-                    print("error: \(error)")
-                }
-                
-                guard let result = json else { return }
-                let entries = result.daily.data
-                self.dailyModels.append(contentsOf: entries)
-                
-                let current = result.currently
-                self.currentWeather = current
-                self.hourlyModels = result.hourly.data
-                self.conditionImage.image = UIImage(systemName: result.currently.conditionName)
-                self.cityLabel.text = self.removeUnusedTextAndCharacters(result.timezone)
-                self.summaryLabel.text = result.currently.summary
-                
-                
-                self.table.reloadData()
-                self.table.tableHeaderView = self.createTableHeader()
-                self.table.tableFooterView = self.createTableFooter()
-            }
-        }.resume()
-    }
-    
-    private func removeUnusedTextAndCharacters(_ text: String) -> String {
-        
-        var editedText = ""
-        
-        if let index = (text.range(of: "/")?.upperBound) {
-            editedText = String(text.suffix(from: index))
-            if editedText.contains("_") {
-                editedText = editedText.replacingOccurrences(of: "_", with: " ")
-                return editedText
-            }
-            return editedText
-        }
-        return text
+        print("Error: \(error)")
     }
 }
+
+
+
+
+
+// MARK: - String Extension
+
+extension String {
+    
+    func capitalizingFirstLetter() -> String {
+        
+        return prefix(1).capitalized + dropFirst()
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        
+        self = self.capitalizingFirstLetter()
+    }
+}
+
+
+

@@ -2,152 +2,135 @@
 //  WeatherModel.swift
 //  simple_weather_project
 //
-//  Created by Акжан Калиматов on 17.08.2022.
+//  Created by Акжан Калиматов on 19.08.2022.
 //
 
-import UIKit
+import Foundation
 
-struct WeatherResponse: Codable {
-    let latitude:   Float
-    let longitude:  Float
-    let timezone:   String
-    let currently:  CurrentWeather
-    let hourly:     HourlyWeather
-    let daily:      DailyWeather
-    let offset:     Float
+struct WeatherModel {
     
-}
-
-
-
-
-struct CurrentWeather: Codable {
-    let conditionId:            Int
-    let time:                   Int
-    let summary:                String
-    let icon:                   String
-    //let nearestStormDistance:   Int
-    //let nearestStormBearing:    Int
-    //let precipIntensity:        Int
-    //let precipProbability:      Int
-    let temperature:            Double
-    let apparentTemperature:    Double
-    let dewPoint:               Double
-    let humidity:               Double
-    let pressure:               Double
-    let windSpeed:              Double
-    let windGust:               Double
-    let windBearing:            Int
-    let cloudCover:             Double
-    let uvIndex:                Int
-    let visibility:             Double
-    let ozone:                  Double
+    
+    let cityName: String
+    let message: String?
+    
+   
+    let currentTemperature: Double
+    let feels_like: Double
+    let tempMin: Double
+    let tempMax: Double
+    let pressure: Double
+    let humidity: Double
+    
+  
+    let conditionId: Int
+    let description: String
+    let icon: String
+   
+    let country: String
     
     
     
+    var currentTemperatureString: String {
+        return String(format: "%.0f", currentTemperature)
+    }
     
-    var conditionName: String {
-            
-            switch conditionId {
-                case 200...232:
-                    return "cloud.bolt"
-                case 300...321:
-                    return "cloud.drizzle"
-                case 500...531:
-                    return "cloud.rain"
-                case 600...622:
-                    return "cloud.snow"
-                case 701...781:
-                    return "cloud.fog"
-                case 800:
-                    return "sun.max"
-                case 801...804:
-                    return "cloud.bolt"
-                default:
-                    return "cloud"
-            }
-            
+    var feelsLikeString: String {
+        return String(format: "%.0f", feels_like)
+    }
+    
+    var pressureString: String {
+        return String(format: "%.0f", pressure)
+    }
+    
+    var humidityString: String {
+        return String(format: "%.0f", humidity)
+    }
+    
+    var highTemperatureString: String {
+        return String(format: "%.0f", tempMax)
+    }
+    
+    var lowTemperatureString: String {
+        return String(format: "%.0f", tempMin)
+    }
+    
+    // SF Symbols for daytime conditions.
+    var dayConditionName: String {
+        switch conditionId {
+        case 200...232:
+            return "cloud.bolt.rain"
+        case 300...321, 500:
+            return "cloud.drizzle"
+        case 501:
+            return "cloud.rain"
+        case 511:
+            return "cloud.hail"
+        case 502...504, 520-531:
+            return "cloud.rain"
+        case 600...602, 620-622:
+            return "cloud.snow"
+        case 611-616:
+            return "cloud.sleet"
+        case 701, 741:
+            return "cloud.fog"
+        case 721:
+            return "sun.haze"
+        case 711, 731, 751, 761, 762:
+            return "sun.dust"
+        case 771:
+            return "tropicalstorm"
+        case 781:
+            return "tornado"
+        case 800:
+            return "sun.max"
+        case 801:
+            return "sun.min"
+        case 802...803:
+            return "cloud.sun"
+        case 804:
+            return "smoke"
+        default:
+            return "cloud"
         }
-}
-
-struct HourlyWeather: Codable {
+    }
     
-    let summary:    String
-    let icon:       String
-    let data:       [HourlyWeatherEntry]
+    // SF Symbols for nightime conditions.
+    var nightConditionName: String {
+        switch conditionId {
+        case 200...232:
+            return "cloud.moon.bolt"
+        case 300...321, 500:
+            return "cloud.moon.rain"
+        case 501:
+            return "cloud.moon.rain"
+        case 511:
+            return "cloud.hail"
+        case 502...504, 520-531:
+            return "cloud.rain"
+        case 600...602, 620-622:
+            return "cloud.snow"
+        case 611-616:
+            return "cloud.sleet"
+        case 701, 741:
+            return "cloud.fog"
+        case 721:
+            return "cloud.fog"
+        case 711, 731, 751, 761, 762:
+            return "cloud.fog"
+        case 771:
+            return "tropicalstorm"
+        case 781:
+            return "tornado"
+        case 800:
+            return "moon.stars"
+        case 801:
+            return "cloud.moon"
+        case 802...803:
+            return "cloud.moon"
+        case 804:
+            return "smoke"
+        default:
+            return "cloud"
+        }
+    }
 }
-
-struct HourlyWeatherEntry: Codable {
-    
-    let time:                   Int
-    let summary:                String
-    let icon:                   String
-    let precipIntensity:        Float
-    let precipProbability:      Double
-    let precipType:             String?
-    let temperature:            Double
-    let apparentTemperature:    Double
-    let dewPoint:               Double
-    let humidity:               Double
-    let pressure:               Double
-    let windSpeed:              Double
-    let windGust:               Double
-    let windBearing:            Int
-    let cloudCover:             Double
-    let uvIndex:                Int
-    let visibility:             Double
-    let ozone:                  Double
-}
-
-struct DailyWeather: Codable {
-    
-    let summary:    String
-    let icon:       String
-    let data:       [DailyWeatherEntry]
-}
-
-struct DailyWeatherEntry: Codable {
-    
-    let time:                           Int
-    let summary:                        String
-    let icon:                           String
-    let sunriseTime:                    Int
-    let sunsetTime:                     Int
-    let moonPhase:                      Double
-    let precipIntensity:                Float
-    let precipIntensityMax:             Float
-    let precipIntensityMaxTime:         Int
-    let precipProbability:              Double
-    let precipType:                     String?
-    let temperatureHigh:                Double
-    let temperatureHighTime:            Int
-    let temperatureLow:                 Double
-    let temperatureLowTime:             Int
-    let apparentTemperatureHigh:        Double
-    let apparentTemperatureHighTime:    Int
-    let apparentTemperatureLow:         Double
-    let apparentTemperatureLowTime:     Int
-    let dewPoint:                       Double
-    let humidity:                       Double
-    let pressure:                       Double
-    let windSpeed:                      Double
-    let windGust:                       Double
-    let windGustTime:                   Int
-    let windBearing:                    Int
-    let cloudCover:                     Double
-    let uvIndex:                        Int
-    let uvIndexTime:                    Int
-    let visibility:                     Double
-    let ozone:                          Double
-    let temperatureMin:                 Double
-    let temperatureMinTime:             Int
-    let temperatureMax:                 Double
-    let temperatureMaxTime:             Int
-    let apparentTemperatureMin:         Double
-    let apparentTemperatureMinTime:     Int
-    let apparentTemperatureMax:         Double
-    let apparentTemperatureMaxTime:     Int
-}
-
-
-
