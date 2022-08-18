@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WeatherCollectionViewCell" id="SEF-aE-W8L" customClass="WeatherCollectionViewCell" customModule="simple_weather_project">
+            <rect key="frame" x="0.0" y="0.0" width="133" height="193"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="133" height="193"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="353-2P-pNq">
+                        <rect key="frame" x="0.0" y="168" width="133" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="EqH-Cd-e7l"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dIB-va-Du8">
+                        <rect key="frame" x="54" y="84" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="MB1-D1-ue0"/>
+                            <constraint firstAttribute="width" constant="25" id="rFm-6z-S3x"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5GG-Ba-KgB">
+                        <rect key="frame" x="0.0" y="5" width="133" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="gTe-fs-eLu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="KQl-uT-fcG"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="dIB-va-Du8" firstAttribute="centerX" secondItem="SEF-aE-W8L" secondAttribute="centerX" id="0bW-NB-GyG"/>
+                <constraint firstItem="353-2P-pNq" firstAttribute="leading" secondItem="SEF-aE-W8L" secondAttribute="leading" id="0ux-1Y-WZ3"/>
+                <constraint firstAttribute="bottom" secondItem="353-2P-pNq" secondAttribute="bottom" constant="5" id="9Ch-q1-gxu"/>
+                <constraint firstAttribute="trailing" secondItem="353-2P-pNq" secondAttribute="trailing" id="E6s-NQ-6Wd"/>
+                <constraint firstItem="5GG-Ba-KgB" firstAttribute="leading" secondItem="SEF-aE-W8L" secondAttribute="leading" id="FAd-4J-MCP"/>
+                <constraint firstItem="dIB-va-Du8" firstAttribute="centerY" secondItem="SEF-aE-W8L" secondAttribute="centerY" id="QMh-ot-Os3"/>
+                <constraint firstItem="5GG-Ba-KgB" firstAttribute="top" secondItem="SEF-aE-W8L" secondAttribute="top" constant="5" id="pp5-ig-gSv"/>
+                <constraint firstAttribute="trailing" secondItem="5GG-Ba-KgB" secondAttribute="trailing" id="sBX-zF-JJl"/>
+            </constraints>
+            <size key="customSize" width="133" height="193"/>
+            <connections>
+                <outlet property="iconImageView" destination="dIB-va-Du8" id="HFD-sx-TRz"/>
+                <outlet property="tempLabel" destination="353-2P-pNq" id="qeu-F2-3RS"/>
+                <outlet property="timeLabel" destination="5GG-Ba-KgB" id="8PO-fj-baX"/>
+            </connections>
+            <point key="canvasLocation" x="-58.695652173913047" y="192.52232142857142"/>
+        </collectionViewCell>
+    </objects>
+</document>
