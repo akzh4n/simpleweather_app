@@ -148,3 +148,13 @@ struct Sys: Codable {
 1. Clone the repo: `git clone https://github.com/manste1n/simpleweather_app`
 2. Add a Constants.swift file in the root folder of your project (same folder with Info.plist, Assets.xcassets, etc)
 3. Add the OpenWeatherMap API key and URL
+
+
+
+
+&nbsp;
+
+
+
+Thx for attention :3
+You can support me by following :>
