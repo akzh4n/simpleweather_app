@@ -1,6 +1,6 @@
 
 <p align="left">
-  <img src="https://github.com/manste1n/simpleweather_app/blob/main/Screens/main.png" width="200" title="main">
+  <img src="https://github.com/manste1n/simpleweather_app/blob/main/Screens/mainicon.png" width="200" title="main">
 </p>
 
 
