@@ -33,11 +33,11 @@
             </objects>
             <point key="canvasLocation" x="-523" y="24"/>
         </scene>
-        <!--Обзор-->
+        <!--Review-->
         <scene sceneID="qcC-Uz-Unn">
             <objects>
                 <navigationController id="Nya-FX-Esa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="Обзор" image="view2" id="BoH-pd-oNN">
+                    <tabBarItem key="tabBarItem" tag="1" title="Review" image="view2" id="BoH-pd-oNN">
                         <inset key="imageInsets" minX="3" minY="-4" maxX="-1" maxY="0.0"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NZp-V6-oA4">
@@ -405,11 +405,11 @@
             </objects>
             <point key="canvasLocation" x="259.4202898550725" y="1568.9732142857142"/>
         </scene>
-        <!--Город-->
+        <!--City-->
         <scene sceneID="LTy-1B-OZs">
             <objects>
                 <navigationController id="33l-Vb-bKI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Город" image="cityicon" id="ncu-ug-oCp">
+                    <tabBarItem key="tabBarItem" title="City" image="cityicon" id="ncu-ug-oCp">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-1" maxY="0.0"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XqM-br-UlH">
