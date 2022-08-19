@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73342CB928B01987004C2DA8 /* AllCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73342CB828B01987004C2DA8 /* AllCityViewController.swift */; };
 		738EC72228AEDA4F00CB1C5B /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738EC72128AEDA4F00CB1C5B /* WeatherData.swift */; };
 		738EC72428AEDA6B00CB1C5B /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738EC72328AEDA6B00CB1C5B /* WeatherModel.swift */; };
 		738EC72628AEDAE600CB1C5B /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738EC72528AEDAE600CB1C5B /* WeatherManager.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		73342CB828B01987004C2DA8 /* AllCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCityViewController.swift; sourceTree = "<group>"; };
 		738EC72128AEDA4F00CB1C5B /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		738EC72328AEDA6B00CB1C5B /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		738EC72528AEDAE600CB1C5B /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				73BC55FF28AE55A000FB45E6 /* WeModel */,
 				73D42D7B28A8507800B05019 /* AppDelegate.swift */,
 				73D42D7D28A8507800B05019 /* SceneDelegate.swift */,
+				73342CB828B01987004C2DA8 /* AllCityViewController.swift */,
 				73D968B228AAD72800ADA231 /* WeatherViewController.swift */,
 				73D42D7F28A8507800B05019 /* ViewController.swift */,
 				73D42D8128A8507800B05019 /* Main.storyboard */,
@@ -165,6 +168,7 @@
 				73D968B328AAD72800ADA231 /* WeatherViewController.swift in Sources */,
 				738EC72228AEDA4F00CB1C5B /* WeatherData.swift in Sources */,
 				73D42D7E28A8507800B05019 /* SceneDelegate.swift in Sources */,
+				73342CB928B01987004C2DA8 /* AllCityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +326,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -353,6 +358,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

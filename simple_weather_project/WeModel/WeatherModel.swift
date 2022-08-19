@@ -31,11 +31,11 @@ struct WeatherModel {
     
     
     var currentTemperatureString: String {
-        return String(format: "%.0f", currentTemperature)
+        return String(format: "%.0f", (currentTemperature - 32) * 5/9)
     }
     
     var feelsLikeString: String {
-        return String(format: "%.0f", feels_like)
+        return String(format: "%.0f", (feels_like - 32) * 5/9)
     }
     
     var pressureString: String {
@@ -47,11 +47,11 @@ struct WeatherModel {
     }
     
     var highTemperatureString: String {
-        return String(format: "%.0f", tempMax)
+        return String(format: "%.0f", (tempMax - 32) * 5/9)
     }
     
     var lowTemperatureString: String {
-        return String(format: "%.0f", tempMin)
+        return String(format: "%.0f", (tempMin - 32) * 5/9)
     }
     
     // SF Symbols for daytime conditions.

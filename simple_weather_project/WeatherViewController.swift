@@ -121,11 +121,11 @@ extension WeatherViewController: WeatherManagerDelegate {
             self.descriptionLabel.text = weather.description.capitalizingFirstLetter()
             self.cityLabel.text = weather.cityName
             self.temperatureLabel.text = weather.currentTemperatureString
-            self.feelsLikeLabel.text = weather.feelsLikeString
-            self.pressureLabel.text = weather.pressureString
-            self.humidityLabel.text = weather.humidityString
-            self.minTemperatureLabel.text = weather.lowTemperatureString
-            self.maxTemperatureLabel.text = weather.highTemperatureString
+            self.feelsLikeLabel.text = weather.feelsLikeString + " ºC"
+            self.pressureLabel.text = weather.pressureString + " hPa"
+            self.humidityLabel.text = weather.humidityString + " %"
+            self.minTemperatureLabel.text = weather.lowTemperatureString + " ºC"
+            self.maxTemperatureLabel.text = weather.highTemperatureString + " ºC"
         }
     }
     
@@ -181,6 +181,9 @@ extension String {
         self = self.capitalizingFirstLetter()
     }
 }
+
+
+
 
 
 
